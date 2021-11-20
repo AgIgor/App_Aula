@@ -1,12 +1,14 @@
 <?php
+    session_start();
 
     $titulo = str_replace('*|*','_',$_POST['titulo']);
     $categoria = str_replace('*|*','_',$_POST['categoria']);
     $descricao = str_replace('*|*','_',$_POST['descricao']);
+    $id = $_SESSION['id'];
 
     // implode('sinal','array');
 
-    $texto = $titulo .'*|*'. $categoria .'*|*'. $descricao.PHP_EOL;
+    $texto = $id .'*|*'. $titulo .'*|*'. $categoria .'*|*'. $descricao.PHP_EOL;
 
     $arquivo = fopen('dados.txt','a');
     fwrite ($arquivo,$texto);

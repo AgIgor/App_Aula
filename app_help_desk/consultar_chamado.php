@@ -5,12 +5,13 @@
 
   while(!feof($arquivo)){
     $registro = fgets($arquivo);
-    if($registro != ''){
+    if(!empty($registro)){      //if($registro != ''){
       $chamados[] = $registro;
     }
   }//end while
     fclose($arquivo);
 ?>
+
 
 <html>
   <head>
@@ -32,13 +33,13 @@
   <body>
 
     <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="/index.php">
+      <a class="navbar-brand" href="/app_help_desk/index.php">
         <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
         App Help Desk
       </a>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="logout.php">Sair</a>
+        <a class="nav-link" href="/app_help_desk/logout.php"><span ><?= $_SESSION['email']." | "?></span>Sair</a>
         </li>
       </ul> 
     </nav>
@@ -51,17 +52,20 @@
             </div>
             
             <div class="card-body">
-              
-              <?php foreach($chamados as $chamado){ ?>
+
+              <?php foreach($chamados as $chamado){?>
                 <?php
-                  $chamado_dados = explode('*|*',$chamado);
+                    $chamado_dados = explode('*|*',$chamado);                     
+                    if($chamado_dados[0] != $_SESSION['id']){
+                      continue;
+                      }
                 ?>
 
                 <div class="card mb-3 bg-light">
                   <div class="card-body">
-                    <h5 class="card-title"><?= $chamado_dados[0] ?></h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><?= $chamado_dados[1] ?></h6>
-                    <p class="card-text"><?= $chamado_dados[2] ?></p>
+                    <h5 class="card-title"><?= $chamado_dados[1] ?></h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><?= $chamado_dados[2] ?></h6>
+                    <p class="card-text"><?= $chamado_dados[3] ?></p>
                   </div>
                 </div>
 
@@ -69,10 +73,10 @@
 
               <div class="row mt-5">
                 <div class="col-6">
-                  <a class="btn btn-lg btn-warning btn-block" href="/home.php">Voltar</a>
+                  <a class="btn btn-lg btn-warning btn-block" href="/app_help_desk/home.php">Voltar</a>
                 </div>
                 <div class="col-6">
-                        <a  class="btn btn-lg btn-info btn-block" href="/abrir_chamado.php">Adicionar</a>
+                        <a  class="btn btn-lg btn-info btn-block" href="/app_help_desk/abrir_chamado.php">Adicionar</a>
                 </div>
               </div>
             </div>

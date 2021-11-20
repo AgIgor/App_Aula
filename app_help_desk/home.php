@@ -22,13 +22,13 @@
   <body>
 
     <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="/index.php">
+      <a class="navbar-brand" href="/app_help_desk/index.php">
         <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
         App Help Desk
-      </a>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="logout.php">Sair</a>
+      </a>      
+      <ul class="navbar-nav"> 
+        <li class="nav-item">     
+          <a class="nav-link" href="/app_help_desk/logout.php"><span ><?= $_SESSION['email']." | "?></span>Sair</a>
         </li>
       </ul>  
     </nav>
